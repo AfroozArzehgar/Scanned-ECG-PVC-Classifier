@@ -21,7 +21,7 @@ Fatemeh Davarinia¹ · Afrooz Arzehgar² · Feisal Rahimpour³ · Davood Ramezan
 ## 🖼️ Graphical Abstract
 
 <div align="center">
-<img src="assets/graphical_abstract.svg" alt="Graphical abstract: scanned 12-lead ECG image pipeline for LVOT/RVOT PVC localization" width="100%">
+<img src="graphical_abstract.svg" alt="Graphical abstract: scanned 12-lead ECG image pipeline for LVOT/RVOT PVC localization" width="100%">
 </div>
 
 ---
@@ -121,7 +121,7 @@ De-identified data and analysis code are available in this repository. The origi
 If you use this code or build on this work, please cite:
 
 ```bibtex
-@article{davarinia2026scanned,
+@article{,
   title   = {Scanned Electrocardiogram-Based Deep Learning for Localizing the Origin of Premature Ventricular Complexes},
   author  = {Davarinia, Fatemeh and Arzehgar, Afrooz and Rahimpour, Feisal and Ramezaninezhad, Davood},
   year    = {2026}
