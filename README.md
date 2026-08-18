@@ -74,35 +74,42 @@ Each **PVC beat, per ECG lead**, is treated as an independent image-level input 
 
 ```
 .
-├── data/                 # De-identified data (see Data Availability below)
-├── notebooks/            # Preprocessing, training, evaluation notebooks
-├── src/
-│   ├── preprocessing/    # Cropping, enhancement, augmentation
-│   ├── models/           # Custom CNN & MobileNetV2 architectures
-│   ├── evaluation/       # Metrics, ROC/AUC, lead-level statistics
-│   └── interpretability/ # Grad-CAM
-├── figures/              # ROC curves, confusion matrices, learning curves, Grad-CAM maps
-├── assets/
-│   └── graphical_abstract.svg
+├── 01_preprocess_beats.py            # Lead cropping, enhancement, PVC beat extraction
+├── 02_train_subject_level.CNN.py     # Custom CNN training (patient-level CV)
+├── 03_train_subject_level_mobilenetv2.py  # MobileNetV2 training (patient-level CV)
+├── LVOT.rar                          # De-identified LVOT PVC beat images (extract before use)
+├── RVOT.rar                          # De-identified RVOT PVC beat images (extract before use)
+├── graphical_abstract.svg
+├── requirements.txt
 └── README.md
 ```
 
 ## 🚀 Getting Started
 
 ```bash
-git clone https://github.com/<org>/<repo>.git
-cd <repo>
+git clone https://github.com/AfroozArzehgar/Scanned-ECG-PVC-Classifier.git
+cd Scanned-ECG-PVC-Classifier
 pip install -r requirements.txt
 ```
 
 ```bash
-# Example: run inference with the trained MobileNetV2 model
-python src/models/predict.py --image path/to/lead_beat_image.png
+# Example: preprocess scanned ECGs into PVC beat images
+python 01_preprocess_beats.py
+
+# Train the MobileNetV2 classifier with patient-level cross-validation
+python 03_train_subject_level_mobilenetv2.py
 ```
 
 ## 📊 Data Availability
 
-De-identified data and analysis code are available in this repository. The original clinical ECG recordings are **not publicly available**, as they were obtained under institutional ethical approval; they may be shared by the corresponding author upon reasonable request, subject to institutional and ethical requirements.
+De-identified subsets of PVC beat images used for model training and evaluation are provided in this repository as `LVOT.rar` and `RVOT.rar`. Extract these archives (e.g. using [7-Zip](https://www.7-zip.org/) or `unrar`) before running the scripts:
+
+```bash
+unrar x LVOT.rar
+unrar x RVOT.rar
+```
+
+Note: these subsets are provided for illustrative/reproducibility purposes and do not represent the full training/test cohort. The original full-resolution clinical ECG scans and complete patient-level dataset are **not publicly available**, as they were obtained under institutional ethical approval; they may be shared by the corresponding author upon reasonable request, subject to institutional and ethical requirements.
 
 ## 🧾 Study Population & Ethics
 
